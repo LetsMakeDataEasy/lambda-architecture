@@ -1,0 +1,34 @@
+version: '2'
+services:
+  namenode:
+    image: cyjia/hadoop
+    ports:
+      - "19000:9000"
+      - "18020:8020"
+    command: hdfs namenode
+    hostname: hdfs-namenode
+
+  datanode:
+    image: cyjia/hadoop
+    command: hdfs datanode
+    ports:
+      # The host port is randomly assigned by Docker, to allow scaling to multiple DataNodes on the same host
+      - "50075"
+    links:
+      - namenode:hdfs-namenode
+
+  secondarynamenode:
+    image: cyjia/hadoop
+    command: hdfs secondarynamenode
+    ports:
+      - "50090:50090"
+    links:
+      - namenode:hdfs-namenode
+
+  yarn:
+    image: cyjia/hadoop
+    command: /usr/local/bin/start-yarn.sh
+    ports:
+      - "8032"
+    links:
+      - namenode:hdfs-namenode
