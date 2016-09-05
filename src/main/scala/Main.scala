@@ -6,7 +6,7 @@ import scala.collection.JavaConversions._
 object Main {
   def createMessage(key: String, value: String) {
     val props = new java.util.HashMap[String, Object]()
-    props.put("bootstrap.servers", "localhost:9092")
+    props.put("bootstrap.servers", "kafka:9092")
     props.put("acks", "all")
     props.put("retries", new Integer(0))
     props.put("batch.size", new Integer(16384))
@@ -18,5 +18,9 @@ object Main {
     val producer = new KafkaProducer[String, String](props)
     producer.send(new ProducerRecord[String, String]("my-topic", key, value))
     producer.close()
+  }
+
+  def main(args: Array[String]): Unit = {
+    createMessage("haha", "value value")
   }
 }

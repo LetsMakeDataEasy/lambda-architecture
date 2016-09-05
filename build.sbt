@@ -19,5 +19,5 @@ lazy val root = (project in file("."))
     ))
   .settings(
      assemblyJarName in assembly := "la.jar",
-     mainClass in assembly := Some("Main")
+     mainClass in assembly := Some("com.thoughtworks.la.Main")
 )
