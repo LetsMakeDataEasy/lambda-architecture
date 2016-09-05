@@ -25,10 +25,14 @@ RUN \
 RUN \
   mkdir -p /root/.ivy2 && \
   mkdir -p /root/.sbt && \
+  mkdir -p /root/.m2 && \
+  mkdir -p /root/.coursier && \
   mkdir /playground
 
 VOLUME /root/.ivy2
 VOLUME /root/.sbt
+VOLUME /root/.m2
+VOLUME /root/.coursier
 VOLUME /playground
 
 # Define working directory
