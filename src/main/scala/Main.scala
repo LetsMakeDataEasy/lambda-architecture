@@ -5,7 +5,7 @@ import org.apache.kafka.clients.consumer.{KafkaConsumer, ConsumerRecord}
 import scala.collection.JavaConversions._
 
 object Main {
-  def createMessage(key: String, value: String) {
+  def createMessage[K, V](key: K, value: V, ks: String, vs: String) {
     val props = new java.util.HashMap[String, Object]()
     props.put("bootstrap.servers", "kafka:9092")
     props.put("acks", "all")
@@ -13,17 +13,17 @@ object Main {
     props.put("batch.size", new Integer(16384))
     props.put("linger.ms", new Integer(1))
     props.put("buffer.memory", new Integer(33554432))
-    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+    props.put("key.serializer", ks)
+    props.put("value.serializer", vs)
 
-    val producer = new KafkaProducer[String, String](props)
-    producer.send(new ProducerRecord[String, String]("my-topic", key, value))
+    val producer = new KafkaProducer[K, V](props)
+    producer.send(new ProducerRecord[K, V]("my-topic", key, value))
     producer.close()
   }
 
   def consumeMessage() {
      val props = new java.util.HashMap[String, Object]()
-     props.put("bootstrap.servers", "localhost:9092")
+     props.put("bootstrap.servers", "kafka:9092")
      props.put("group.id", "test")
      props.put("enable.auto.commit", "true")
      props.put("auto.commit.interval.ms", "1000")
@@ -31,7 +31,7 @@ object Main {
      props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
      props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
      val consumer = new KafkaConsumer[String, String](props)
-     consumer.subscribe(List("foo", "bar"))
+     consumer.subscribe(List("my-topic"))
      while (true) {
        val records = consumer.poll(100)
        for {
@@ -43,6 +43,7 @@ object Main {
   }
 
   def main(args: Array[String]): Unit = {
-    createMessage("haha", "value value")
+    val strSerializer = "org.apache.kafka.common.serialization.StringSerializer"
+    createMessage("haha", "value value", strSerializer, strSerializer)
   }
 }
