@@ -1,4 +1,4 @@
-package com.thoughtworks.la
+package com.thoughtworks.la.ingestion.kafka
 
 import org.apache.kafka.clients.consumer.{KafkaConsumer, ConsumerRecord}
 import scala.collection.JavaConversions._

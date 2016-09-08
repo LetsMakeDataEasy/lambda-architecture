@@ -1,4 +1,4 @@
-package com.thoughtworks.la.coretypes
+package com.thoughtworks.la.base.coretypes
 
 case class ClasspathResource(name: String)
 

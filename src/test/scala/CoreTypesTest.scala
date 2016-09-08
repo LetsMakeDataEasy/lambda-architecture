@@ -1,8 +1,8 @@
 package com.thoughtworks.la
 
 import org.scalatest.FunSuite
-import com.thoughtworks.la.coretypes._
-import com.thoughtworks.la.coretypes.conversions._
+import com.thoughtworks.la.base.coretypes._
+import com.thoughtworks.la.base.coretypes.conversions._
 
 class ConverstionsTest extends FunSuite {
   test("File -> List[String]") {
