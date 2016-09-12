@@ -36,24 +36,13 @@ import jcascalog.Option
 import jcascalog.Subquery
 import jcascalog.op.Count
 import jcascalog.op.Sum
-import manning.schema.Data
-import manning.schema.DataUnit
-import manning.schema.EquivEdge
-import manning.schema.OrigSystem
-import manning.schema.PageID
-import manning.schema.PageViewEdge
-import manning.schema.PageViewSystem
-import manning.schema.Pedigree
-import manning.schema.PersonID
-import manning.schema.Source
+import la.schema._
 import manning.tap.SplitDataPailStructure
 import manning.tap.DataPailStructure
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.FileSystem
-import org.apache.hadoop.fs.Path
+import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.hadoop.mapred.JobConf
-import elephantdb.partition.ShardingScheme
-import elephantdb.partition.HashModScheme
+import elephantdb.partition.{ShardingScheme, HashModScheme}
 import elephantdb.DomainSpec
 import elephantdb.jcascalog.EDB
 import java.nio.ByteBuffer

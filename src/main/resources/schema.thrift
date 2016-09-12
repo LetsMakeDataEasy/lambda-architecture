@@ -1,5 +1,4 @@
-namespace php manning.schema
-namespace java manning.schema
+namespace java la.schema
 
 union PersonID {
   1: string cookie;
