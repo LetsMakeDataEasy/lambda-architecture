@@ -21,7 +21,7 @@ object LaBuild extends Build {
     .settings(commonSettings: _*)
     .settings(
     libraryDependencies ++= Seq(
-      "org.apache.kafka" %% "kafka" % "0.8.2.1",
+      "org.apache.kafka" %% "kafka" % "0.8.2.1" exclude("log4j", "log4j") exclude("org.slf4j", "slf4j-log4j12"),
       "backtype" % "dfs-datastores-cascading" % "1.2.0",
       "cascalog" % "cascalog" % "1.10.0",
       "log4j" % "log4j" % "1.2.16",
@@ -34,7 +34,8 @@ object LaBuild extends Build {
       "com.clearspring.analytics" % "stream" % "2.7.0",
       "org.hectorclient" % "hector-core" % "2.0-0",
       "org.apache.hadoop" % "hadoop-core" % "0.20.2-dev",
-      "org.apache.zookeeper" % "zookeeper" % "3.4.6"
+      "org.apache.zookeeper" % "zookeeper" % "3.4.6" exclude("log4j", "log4j")  exclude("org.slf4j", "slf4j-log4j12"),
+      "commons-httpclient" % "commons-httpclient" % "3.1"
     ))
     .settings(
     resolvers ++= Seq(
